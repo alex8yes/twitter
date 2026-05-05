@@ -61,7 +61,12 @@ export async function POST(req: Request) {
 
     const data = JSON.parse(text);
 
-    return NextResponse.json(data);
+    // Normalize: ensure we return an array of strings
+    const tweets = Array.isArray(data.tweets) 
+      ? data.tweets.map((t: any) => typeof t === "string" ? t : (t.text || t.content || JSON.stringify(t)))
+      : [];
+
+    return NextResponse.json({ tweets });
   } catch (error: any) {
     console.error("Generation error:", error);
     return NextResponse.json({ error: "Échec de la génération des tweets", details: error.message }, { status: 500 });
