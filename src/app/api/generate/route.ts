@@ -49,10 +49,14 @@ export async function POST(req: Request) {
       responseFormat: { type: "json_object" }
     });
 
-    const text = chatResponse.choices?.[0]?.message.content;
+    if (!chatResponse || !chatResponse.choices || chatResponse.choices.length === 0) {
+      throw new Error("Mistral AI a retourné une réponse vide.");
+    }
+
+    const text = chatResponse.choices[0].message.content;
     
     if (typeof text !== "string") {
-      throw new Error("Invalid response from Mistral");
+      throw new Error("Le format de réponse de Mistral AI est invalide.");
     }
 
     const data = JSON.parse(text);
@@ -60,6 +64,6 @@ export async function POST(req: Request) {
     return NextResponse.json(data);
   } catch (error: any) {
     console.error("Generation error:", error);
-    return NextResponse.json({ error: "Failed to generate tweets", details: error.message }, { status: 500 });
+    return NextResponse.json({ error: "Échec de la génération des tweets", details: error.message }, { status: 500 });
   }
 }
