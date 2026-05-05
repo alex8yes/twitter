@@ -9,29 +9,35 @@ export async function POST(req: Request) {
 
     const prompt = `
       Tu es un expert en marketing Twitter (X) spécialisé dans le SaaS B2B, l'e-commerce et le "Leverage IA".
-      Ton objectif est de générer 3 tweets percutants pour promouvoir "Full IA", un SaaS qui automatise le SAV Shopify.
+      Ton objectif est de générer 5 tweets percutants pour promouvoir "Full IA", un SaaS qui automatise le SAV Shopify.
       
-      VARIÉTÉ CRUCIALE (15+ Angles) : Pour éviter la répétition sur le long terme, pioche 3 angles TOTALEMENT DIFFÉRENTS parmi cette liste pour les 3 tweets :
-      1. VITESSE EXTRÊME : Comparaison 28s vs 14h. L'IA répond avant que le client ne cligne des yeux.
-      2. ROI / REFUND : "1 remboursement évité = 1 client fidélisé". Le SAV n'est plus un coût, c'est un profit.
-      3. FOCUS FONDATEUR : Arrêtez de gérer les "Où est mon colis" à 22h. Déléguez au robot, allez scaler votre Ads.
-      4. DATA SHOPIFY : Synchro temps réel avec les API Shopify (Orders, Tracking, Inventory). Zéro hallucination.
-      5. RECRUTEMENT/TURNOVER : L'alternative aux galères de recrutement, de formation et de turnover des agents.
-      6. CHARGEBACKS : La vitesse de réponse tue les litiges bancaires avant qu'ils n'arrivent.
-      7. MULTILINGUE : Supportez le monde entier (FR, EN, ES, IT, DE) sans embaucher de natifs.
-      8. AI AGENT vs CHATBOT : Ce n'est pas un arbre de décision stupide, c'est un agent intelligent qui résout les problèmes.
-      9. SCALING BFCM : Gérez 10 000 tickets aussi facilement que 1 seul. Pas de stress d'embauche en période de rush.
-      10. NUIT & WEEK-END : Vos clients sont servis à 3h du matin le dimanche pendant que vous dormez.
-      11. BRAND CONSISTENCY : L'IA ne s'épuise jamais et respecte votre "Tone of Voice" à 100%, 24/7.
-      12. FOMO / CONCURRENCE : Vos concurrents automatisent déjà. Ne restez pas avec un SAV du 20ème siècle.
-      13. UPSELL / RETENTION : Transformer une plainte en une nouvelle opportunité de vente grâce à des offres personnalisées.
-      14. PRODUCT INSIGHTS : L'IA détecte les problèmes de qualité produits ou les retards de livraison avant vous.
-      15. COÛT D'OPPORTUNITÉ : Chaque euro économisé sur le SAV est un euro réinjecté dans votre scaling.
+      VARIÉTÉ ET STRATÉGIE (20+ Angles) : Pour éviter la répétition, pioche 5 angles TOTALEMENT DIFFÉRENTS parmi cette liste :
+      1. CLAUDE : L'intelligence de Claude au service de votre SAV. Moins d'hallucinations, plus de contexte, une écriture humaine.
+      2. CALL BOOKING : "Je configure votre Full IA avec vous. Réservez un créneau [Lien Call]."
+      3. VA vs IA : Pourquoi payer un assistant virtuel (VA) $500/mois pour des erreurs quand l'IA est parfaite pour 10x moins cher.
+      4. AGENCE SCAM : Pourquoi les agences de support vous facturent des fortunes pour du copier-coller ?
+      5. LEAD MAGNET : "Commente 'SUPPORT' et je t'envoie la démo/accès en MP." (Engagement bait).
+      6. VITESSE EXTRÊME : Comparaison 28s vs 14h.
+      7. ROI / REFUND : "1 remboursement évité = 1 client fidélisé".
+      8. FOCUS FONDATEUR : Arrêtez de gérer les "Où est mon colis" à 22h.
+      9. DATA SHOPIFY : Synchro temps réel avec les API (Orders, Tracking, Inventory).
+      10. RECRUTEMENT : L'alternative aux galères de RH.
+      11. CHARGEBACKS : La vitesse tue les litiges bancaires.
+      12. MULTILINGUE : Supportez le monde entier sans natifs.
+      13. AI AGENT vs CHATBOT : Ce n'est pas un chatbot, c'est un agent.
+      14. SCALING BFCM : Gérez 10 000 tickets sans stress.
+      15. NUIT & WEEK-END : Vos clients servis à 3h du matin.
+      16. BRAND CONSISTENCY : L'IA respecte votre "Tone of Voice" à 100%.
+      17. FOMO : Vos concurrents automatisent déjà.
+      18. UPSELL : Transformer une plainte en vente.
+      19. PRODUCT INSIGHTS : Détecter les défauts produits avant vous.
+      20. COÛT D'OPPORTUNITÉ : Réinjectez le cash du SAV dans l'Ads.
       
       RÈGLE STRICTE ET CRITIQUE : 
-      - INTERDICTION ABSOLUE de mentionner le chiffre "90%" ou toute statistique de pourcentage générique.
+      - Génère exactement 5 tweets.
+      - INTERDICTION de mentionner le chiffre "90%" ou toute statistique de pourcentage générique.
       - STYLE : "Money Twitter" (direct, percutant, focus cash/liberté).
-      - FORMAT : Uniquement un objet JSON { "tweets": ["...", "...", "..."] }.
+      - FORMAT : Uniquement un objet JSON { "tweets": ["...", "...", "...", "...", "..."] }.
     `;
 
     const result = await model.generateContent(prompt);

@@ -24,8 +24,8 @@ export default function NotificationManager() {
       const minutes = now.getMinutes();
       const today = now.toLocaleDateString();
 
-      // Target slots: 9h, 14h, 20h
-      const targetSlots = [9, 14, 20];
+      // Target slots: 8h, 11h, 14h, 18h, 21h
+      const targetSlots = [8, 11, 14, 18, 21];
       
       if (targetSlots.includes(hours) && minutes === 0) {
         // Check if already notified for this slot today
@@ -37,10 +37,10 @@ export default function NotificationManager() {
         if (!history[today].includes(hours)) {
           // Send notification
           new Notification("🚀 TweetPromoter", {
-            body: `Il est ${hours}h00 ! C'est l'heure de booster Full IA. Vos tweets sont prêts.`,
+            body: `Il est ${hours}h00 ! C'est l'heure du boost Full IA. 1/5 de la journée accompli.`,
             icon: "/icon.png",
             badge: "/icon.png",
-            tag: `slot-${hours}` // Avoid duplicate notifications if triggered twice
+            tag: `slot-${hours}`
           });
 
           // Update history
@@ -66,7 +66,7 @@ export default function NotificationManager() {
     
     if (result === "granted") {
       new Notification("🚀 Full IA Twitter", {
-        body: "Rappels activés ! Je vous préviendrai à 09h00, 14h00 et 20h00.",
+        body: "Rappels activés ! 5 posts par jour : 8h, 11h, 14h, 18h, 21h.",
         icon: "/icon.png"
       });
     }
@@ -80,10 +80,10 @@ export default function NotificationManager() {
         </div>
         <div>
           <p className="text-sm font-bold tracking-tight">
-            {permission === 'unsupported' ? 'iOS : Ajoutez l\'app' : (permission === 'granted' ? 'Rappels actifs (9h, 14h, 20h)' : 'Activer les rappels')}
+            {permission === 'unsupported' ? 'iOS : Ajoutez l\'app' : (permission === 'granted' ? 'Rappels actifs (5x par jour)' : 'Activer les rappels')}
           </p>
           <p className="text-[11px] text-zinc-500 font-medium">
-            {permission === 'unsupported' ? 'Menu Partage > Sur l\'écran d\'accueil' : (permission === 'granted' ? 'Vous recevrez une alerte pour poster' : 'Ne ratez aucun créneau stratégique')}
+            {permission === 'unsupported' ? 'Menu Partage > Sur l\'écran d\'accueil' : (permission === 'granted' ? '8h, 11h, 14h, 18h, 21h' : 'Ne ratez aucun créneau stratégique')}
           </p>
         </div>
       </div>

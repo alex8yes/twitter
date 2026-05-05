@@ -6,7 +6,7 @@ import TweetCard from "@/components/TweetCard";
 import NotificationManager from "@/components/NotificationManager";
 import { motion, AnimatePresence } from "framer-motion";
 
-const TIMES = ["Matin (09:00)", "Midi (14:00)", "Soir (20:00)"];
+const TIMES = ["Matin (08:00)", "Midi (11:00)", "Déjeuner (14:00)", "Après-midi (18:00)", "Soir (21:00)"];
 
 export default function Home() {
   const [tweets, setTweets] = useState<string[]>([]);
