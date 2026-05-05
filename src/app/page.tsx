@@ -16,7 +16,20 @@ export default function Home() {
   useEffect(() => {
     const savedTweets = localStorage.getItem("tweets");
     const savedDate = localStorage.getItem("lastGenerated");
-    if (savedTweets) setTweets(JSON.parse(savedTweets));
+    if (savedTweets) {
+      try {
+        const parsed = JSON.parse(savedTweets);
+        if (Array.isArray(parsed)) {
+          // Normalize to strings if needed (to handle legacy objects {text: '...'})
+          const normalized = parsed.map((t: any) => 
+            typeof t === "string" ? t : (t.text || t.content || JSON.stringify(t))
+          );
+          setTweets(normalized);
+        }
+      } catch (e) {
+        console.error("Error loading tweets from storage", e);
+      }
+    }
     if (savedDate) setLastGenerated(savedDate);
   }, []);
 
