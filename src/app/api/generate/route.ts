@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       throw new Error("Mistral AI a retourné une réponse vide.");
     }
 
-    const text = chatResponse.choices[0].message.content;
+    const text = (chatResponse as any).choices[0].message.content;
     
     if (typeof text !== "string") {
       throw new Error("Le format de réponse de Mistral AI est invalide.");
