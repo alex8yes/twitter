@@ -1,14 +1,14 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Mistral } from "@mistralai/mistralai";
 import { NextResponse } from "next/server";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const apiKey = process.env.MISTRAL_API_KEY || "";
+const client = new Mistral({ apiKey });
 
 export async function POST(req: Request) {
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      return NextResponse.json({ error: "Clé API Gemini manquante. Veuillez configurer GEMINI_API_KEY sur Vercel." }, { status: 500 });
+    if (!apiKey) {
+      return NextResponse.json({ error: "Clé API Mistral manquante. Veuillez configurer MISTRAL_API_KEY sur Vercel." }, { status: 500 });
     }
-    const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
     const prompt = `
       Tu es un expert en marketing Twitter (X) spécialisé dans le SaaS B2B, l'e-commerce et le "Leverage IA".
@@ -43,20 +43,23 @@ export async function POST(req: Request) {
       - FORMAT : Uniquement un objet JSON { "tweets": ["...", "...", "...", "...", "..."] }.
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    const chatResponse = await client.chat.complete({
+      model: "mistral-large-latest",
+      messages: [{ role: "user", content: prompt }],
+      responseFormat: { type: "json_object" }
+    });
+
+    const text = chatResponse.choices?.[0]?.message.content;
     
-    // Clean up potential markdown formatting from Gemini
-    const cleanJson = text.replace(/```json/g, "").replace(/```/g, "").trim();
-    const data = JSON.parse(cleanJson);
+    if (typeof text !== "string") {
+      throw new Error("Invalid response from Mistral");
+    }
+
+    const data = JSON.parse(text);
 
     return NextResponse.json(data);
   } catch (error: any) {
     console.error("Generation error:", error);
-    if (error.response) {
-      console.error("Error response:", await error.response.text());
-    }
     return NextResponse.json({ error: "Failed to generate tweets", details: error.message }, { status: 500 });
   }
 }
