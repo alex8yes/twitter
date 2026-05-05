@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       
       VARIÉTÉ ET STRATÉGIE (20+ Angles) : Pour éviter la répétition, pioche 5 angles TOTALEMENT DIFFÉRENTS parmi cette liste :
       1. CLAUDE : L'intelligence de Claude au service de votre SAV. Moins d'hallucinations, plus de contexte, une écriture humaine.
-      2. CALL BOOKING : "Je configure votre Full IA avec vous. Réservez un créneau [Lien Call]."
+      2. CALL BOOKING : "Je configure votre Full IA avec vous. Réservez un créneau."
       3. VA vs IA : Pourquoi payer un assistant virtuel (VA) $500/mois pour des erreurs quand l'IA est parfaite pour 10x moins cher.
       4. AGENCE SCAM : Pourquoi les agences de support vous facturent des fortunes pour du copier-coller ?
       5. LEAD MAGNET : "Commente 'SUPPORT' et je t'envoie la démo/accès en MP." (Engagement bait).
@@ -37,6 +37,7 @@ export async function POST(req: Request) {
       20. COÛT D'OPPORTUNITÉ : Réinjectez le cash du SAV dans l'Ads.
       
       RÈGLE STRICTE ET CRITIQUE : 
+      - NE PAS inclure de placeholders comme "(Lien)", "[Lien]" ou "(Lien Call)". Jamais de crochets ou parenthèses pour des liens.
       - Génère exactement 5 tweets.
       - INTERDICTION de mentionner le chiffre "90%" ou toute statistique de pourcentage générique.
       - STYLE : "Money Twitter" (direct, percutant, focus cash/liberté).
