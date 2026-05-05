@@ -49,7 +49,7 @@ export default function Home() {
           </div>
           <h1 className="text-2xl font-black tracking-tight">TweetPromoter</h1>
         </div>
-        <p className="text-zinc-500 text-sm font-medium">Promouvoir Full IA • 3 posts par jour</p>
+        <p className="text-zinc-500 text-sm font-medium">Promouvoir Full IA • 5 posts par jour</p>
       </header>
 
       <NotificationManager />
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="flex justify-between items-start mb-4">
           <div>
             <h2 className="text-lg font-bold mb-1">Boostez votre SaaS</h2>
-            <p className="text-xs text-zinc-400">Générez vos 3 tweets stratégiques pour aujourd'hui.</p>
+            <p className="text-xs text-zinc-400">Générez vos 5 tweets stratégiques pour aujourd'hui.</p>
           </div>
           <Sparkles className="w-5 h-5 text-primary" />
         </div>

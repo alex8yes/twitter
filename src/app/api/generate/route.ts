@@ -5,6 +5,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.GEMINI_API_KEY) {
+      return NextResponse.json({ error: "Clé API Gemini manquante. Veuillez configurer GEMINI_API_KEY sur Vercel." }, { status: 500 });
+    }
     const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
     const prompt = `
